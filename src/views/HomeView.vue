@@ -2,21 +2,32 @@
   <div class="home">
     <h1>Ваши доски</h1>
     <div class="boards">
-      <router-link v-for="board in boards" :key="board.id" :to="'/board/' + board.id" class="board-card">
+      <!-- Цикл, чтобы сгенерировать карточки для каждой доски -->
+      <!-- v-for проходит по массиву boards и создает элементы -->
+      <router-link
+        v-for="board in boards"
+        :key="board.id"
+        :to="'/board/' + board.id"
+        class="board-card"
+      >
+        <!-- Динамическая ссылка на маршрут с уникальным ID -->
         {{ board.name }}
+        <!-- Название каждой доски отображается внутри ссылки -->
       </router-link>
     </div>
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { ref } from "vue"; // Импортируем ref из Vue для создания реактивных данных
 
-// Временные данные (потом заменим на API)
+// Создаем реактивный массив с досками
+// Пока используем временные данные (набор объектов с id и name)
+// В будущем этот массив можно заменить данными из API
 const boards = ref([
-  { id: 1, name: "Проект 1" },
-  { id: 2, name: "Маркетинг" },
-  { id: 3, name: "Разработка" }
+  { id: 1, name: "Проект 1" }, // Первая доска с ID и названием
+  { id: 2, name: "Маркетинг" }, // Вторая доска
+  { id: 3, name: "Разработка" }, // Третья доска
 ]);
 </script>
 
@@ -40,4 +51,3 @@ const boards = ref([
   font-weight: bold;
 }
 </style>
-
