@@ -1,30 +1,45 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/board">board</router-link>
-  </nav>
-  <router-view />
+  <div id="app">
+    <!-- Боковая панель -->
+    <nav class="sidebar">
+      <router-link to="/">🏠 Home</router-link>
+      <router-link to="/board">📌 Board</router-link>
+      <button @click="toggleBoards" class="boards-btn">📋 Доски</button>
+
+      <div v-if="showBoards" class="boards-dropdown">
+        <router-link
+          v-for="board in boards"
+          :key="board.id"
+          :to="'/board/' + board.id"
+          @click="closeBoards"
+        >
+          {{ board.name }}
+        </router-link>
+      </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="main-content">
+      <router-view />
+    </div>
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script setup lang="ts">
+import { ref } from "vue";
 
-nav {
-  padding: 30px;
+const showBoards = ref(false);
+const boards = ref([
+  { id: 1, name: "Проект 1" },
+  { id: 2, name: "Маркетинг" },
+  { id: 3, name: "Разработка" },
+]);
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+const toggleBoards = () => {
+  showBoards.value = !showBoards.value;
+};
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+const closeBoards = () => {
+  showBoards.value = false;
+};
+</script>
