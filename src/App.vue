@@ -1,45 +1,60 @@
 <template>
-  <div id="app">
-    <!-- Боковая панель -->
+  <main class="app-grid">
     <nav class="sidebar">
-      <router-link to="/">🏠 Home</router-link>
-      <router-link to="/board">📌 Board</router-link>
-      <button @click="toggleBoards" class="boards-btn">📋 Доски</button>
-
-      <div v-if="showBoards" class="boards-dropdown">
-        <router-link
-          v-for="board in boards"
-          :key="board.id"
-          :to="'/board/' + board.id"
-          @click="closeBoards"
-        >
-          {{ board.name }}
-        </router-link>
-      </div>
+      <h1 class="logo">Task Manager</h1>
+      <ul class="sidebar-nav">
+        <li>
+          <router-link to="/">Boards</router-link>
+        </li>
+      </ul>
     </nav>
-
-    <!-- Основной контент -->
     <div class="main-content">
       <router-view />
     </div>
-  </div>
+  </main>
 </template>
 
-<script setup lang="ts">
-import { ref } from "vue";
+<script setup lang="ts"></script>
 
-const showBoards = ref(false);
-const boards = ref([
-  { id: 1, name: "Проект 1" },
-  { id: 2, name: "Маркетинг" },
-  { id: 3, name: "Разработка" },
-]);
+<style scoped>
+.app-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  height: 100%;
+}
 
-const toggleBoards = () => {
-  showBoards.value = !showBoards.value;
-};
+.sidebar {
+  background: #212121;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
 
-const closeBoards = () => {
-  showBoards.value = false;
-};
-</script>
+.logo {
+  font-size: 25px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar-nav li a {
+  color: white;
+  font-size: 21px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar-nav li a:hover {
+  color: #42b983;
+}
+
+.main-content {
+  overflow-y: auto;
+  height: 100%;
+}
+</style>

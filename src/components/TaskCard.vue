@@ -5,9 +5,8 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  task: Object,
-});
+/* eslint-disable no-undef */
+defineProps<{ task: { id: number; name: string } }>();
 </script>
 
 <style scoped>

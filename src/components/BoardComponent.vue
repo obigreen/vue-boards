@@ -33,6 +33,7 @@ defineProps<{ board: BoardType | undefined }>();
 
 <style scoped>
 .board {
+  width: 100%;
   padding: 20px;
 }
 

@@ -9,19 +9,25 @@
 
 <script setup lang="ts">
 import TaskCard from "@/components/TaskCard.vue";
-
-defineProps({
-  list: Object,
-});
+/* eslint-disable no-undef */
+defineProps<{
+  list: { title: string; tasks: { id: number; name: string }[] };
+}>();
 </script>
 
 <style scoped>
 .task-list {
-  background: #f4f5f7;
+  background: #212121;
   padding: 15px;
   border-radius: 8px;
-  width: 250px;
-  min-height: 200px;
+  min-width: 250px;
+  height: max-content;
+}
+
+.task-list h3 {
+  text-align: left;
+  color: white;
+  margin-bottom: 30px;
 }
 
 .tasks {

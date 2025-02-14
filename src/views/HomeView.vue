@@ -1,6 +1,9 @@
 <template>
-  <div class="home">
-    <h1>Ваши доски</h1>
+  <div class="boards-container">
+    <div class="boards-title-wrapper">
+      <h2 class="boards-title">My boards</h2>
+    </div>
+
     <div class="boards">
       <router-link
         v-for="board in boards"
@@ -18,38 +21,44 @@
 import { ref } from "vue";
 
 const boards = ref([
-  { id: 1, name: "Проект 1" },
-  { id: 2, name: "Маркетинг" },
-  { id: 3, name: "Разработка" },
+  { id: 1, name: "Board one" },
+  { id: 2, name: "Board two" },
 ]);
 </script>
 
 <style scoped>
-.home {
+.boards-container {
+  height: 100%;
+}
+
+.boards-title-wrapper {
+  background: #212121;
   padding: 20px;
-  text-align: center;
+}
+
+.boards-title {
+  font-size: 25px;
+  color: white;
 }
 
 .boards {
   display: flex;
+  padding: 20px;
   gap: 20px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
 }
 
 .board-card {
-  background: #0079bf;
+  background: #212121;
   color: white;
-  padding: 20px;
+  padding: 30px;
   border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  width: 200px;
-  text-align: center;
   transition: 0.3s;
+  font-size: 30px;
 }
 
 .board-card:hover {
-  background: #005f8f;
+  color: #42b983;
 }
 </style>
